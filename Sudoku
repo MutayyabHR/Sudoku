@@ -1,0 +1,472 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<cmath>
+using namespace std;
+
+void game1()
+{
+	double game1[9][9]={0,0,5,2,6,9,7,8,1,6,8,2,5,7,1,4,9,3,1,9,7,8,3,4,5,6,2,8,2,6,1,9,5,3,4,7,3,7,4,6,8,2,9,1,5,9,5,1,7,4,3,6,2,8,5,1,9,3,2,6,8,7,4,2,4,8,9,5,7,1,3,6,7,6,3,4,1,8,2,5,9};
+	double sol1[9][9]={4,3,5,2,6,9,7,8,1,6,8,2,5,7,1,4,9,3,1,9,7,8,3,4,5,6,2,8,2,6,1,9,5,3,4,7,3,7,4,6,8,2,9,1,5,9,5,1,7,4,3,6,2,8,5,1,9,3,2,6,8,7,4,2,4,8,9,5,7,1,3,6,7,6,3,4,1,8,2,5,9};
+
+	int x=0;
+	int y=0;
+	int Dif;
+	int moves = 0;
+	cout<<"Choose the level of difficuty."<<endl;
+	cout<<"Enter 1 for Easy."<<endl;
+	cout<<"Enter 2 for Medium."<<endl;
+	cout<<"Enter 3 for Hard."<<endl;
+	cin>>Dif;
+	while((Dif<=0)||(Dif>3))
+	{cout<<"Error in input, Enter value again.";cin>>Dif;}
+	switch(Dif)
+	{
+	case 1: moves=300;break;
+	case 2: moves=200;break;
+	case 3: moves=100;break;
+	default: cout<<"Error in input."<<endl;
+	}
+
+	cout<<"Each column from column 1 to column 9 is mentioned as C1."<<endl;
+	cout<<"Similarly, Each row from row 1 to row 9 is mentioned as R1 to R9."<<endl;
+	cout<<"To choose an index, select it's respective column and row and then assign a value to it."<<endl<<endl;
+	
+	cout<<"     ";
+	for(int k=0; k<=8; k++)
+		{cout<<setw(4)<<"C"<<k+1;}
+	cout<<endl;
+	for(int i=0; i<=8; i++)
+	{
+		x=0;
+		y=0;
+		cout<<setw(3)<<"R"<<i+1;
+		for(int j=0; j<=8; j++)
+		{
+			if(j==0)
+			{cout<<setw(4)<<"|"<<game1[i][j];}
+			else
+			{cout<<setw(5)<<game1[i][j];}
+			if(j==2||j==5||j==8)
+				cout<<"|";
+		}
+		cout<<endl;
+		if(i==2||i==5||i==8)
+		cout<<"       ______________________________________________"<<endl;
+	}
+
+	cout<<"You have "<<moves<<" moves left."<<endl;
+	int t;
+	t=0;
+
+
+	for(t=moves; t>=1; t--)
+	{
+
+
+
+	int r,c;
+	cout<<"Enter the row and column of desired entry.";
+	cin>>r>>c;
+	while((r<1||r>9||c<1||c>9)||((r==1)&&(c==4))||((r==1)&&(c==5))||((r==1)&&(c==7))||((r==1)&&(c==9))||((r==2)&&(c==4))||((r==2)&&(c==1))||((r==2)&&(c==2))||((r==2)&&(c==5))||((r==2)&&(c==8))||((r==3)&&(c==1))||((r==3)&&(c==2))||((r==3)&&(c==6))||((r==3)&&(c==7))||((r==4)&&(c==4))||((r==4)&&(c==1))||((r==4)&&(c==2))||((r==4)&&(c==4))||((r==4)&&(c==8))||((r==5)&&(c==3))||((r==5)&&(c==4))||((r==5)&&(c==6))||((r==5)&&(c==7))||((r==6)&&(c==2))||((r==6)&&(c==6))||((r==6)&&(c==8))||((r==6)&&(c==9))||((r==7)&&(c==3))||((r==7)&&(c==4))||((r==7)&&(c==8))||((r==7)&&(c==9))||((r==8)&&(c==2))||((r==8)&&(c==5))||((r==8)&&(c==8))||((r==8)&&(c==9))||((r==9)&&(c==2))||((r==9)&&(c==3))||((r==9)&&(c==5))||((r==9)&&(c==6)))
+	{
+		cout<<"Invalid row or column, enter values again."<<endl;
+		cin>>r>>c;
+	}
+	cout<<"Enter the integer in given entry.";
+	cin>>game1[r-1][c-1];
+	while((game1[r-1][c-1]<=0)||(game1[r-1][c-1]>9))
+	{
+		cout<<"Enter a value from 1 to 9 "<<endl;
+		cin>>game1[r-1][c-1];
+	}
+	cout<<endl;
+	cout<<"     ";
+	for(int k=0; k<=8; k++)
+		{cout<<setw(4)<<"C"<<k+1;}
+	cout<<endl;
+	for(int i=0; i<=8; i++)
+	{
+		cout<<setw(3)<<"R"<<i+1;
+		for(int j=0; j<=8; j++)
+		{
+			if(j==0)
+			{cout<<setw(4)<<"|"<<game1[i][j];}
+			else
+			{cout<<setw(5)<<game1[i][j];}
+			if(j==2||j==5||j==8)
+				cout<<"|";
+		}
+		cout<<endl;
+		if(i==2||i==5||i==8)
+		cout<<"       ______________________________________________"<<endl;
+
+	}
+
+	for(x=0; x<=8; x++)
+	{
+	for(y=0; y<=8; y++)
+	{
+		if(game1[x][y]==sol1[x][y])
+		{
+			continue;
+		}
+		else
+			break;
+
+	}
+	if(y==9)
+		continue;
+	else
+		break;
+	}
+	if(y==9&&x==9)
+	{ cout<<endl<<endl<<endl<<setw(32)<<"You win! :) "<<endl<<endl; break; }
+
+	cout<<endl<<endl<<setw(21)<<t-1<<" MOVES LEFT."<<endl;
+	}
+
+	if(t<=0)
+	cout<<setw(20)<<"You ran out of moves! :) "<<endl<<endl<<endl;
+
+	for(x=0; x<=8; x++)
+	{
+	for(y=0; y<=8; y++)
+	{
+		if(game1[x][y]!=sol1[x][y])
+		{
+			cout<<setw(33)<<"You lose! :( "<<endl<<endl<<endl;
+			break;
+		}
+	}
+	if(y<9)
+		break;
+	}
+
+	if(y==9&&x==9)
+	{cout<<endl<<endl<<endl<<setw(32)<<"You win! :) "<<endl<<endl;}
+}
+
+void game2()
+{
+	double game1[9][9]={0,6,0,3,5,4,0,9,0,9,0,5,8,0,0,6,0,3,0,4,0,0,0,0,0,8,0,6,0,0,4,0,0,0,1,0,8,7,2,0,9,0,0,6,0,0,0,0,0,3,6,8,0,9,3,0,1,7,0,2,0,0,0,0,0,6,0,0,0,9,3,0,4,0,0,9,0,3,1,0,6};
+	double sol1[9][9]={1,6,8,3,5,4,7,9,2,9,2,5,8,1,7,6,4,3,7,4,3,6,2,9,5,8,1,6,3,9,4,7,8,2,1,5,8,7,2,1,9,5,3,6,4,5,1,4,2,3,6,8,7,9,3,9,1,7,6,2,4,5,8,2,8,6,5,4,1,9,3,7,4,5,7,9,8,3,1,2,6};
+
+	int x=0;
+	int y=0;
+	int Dif;
+	int moves = 0;
+	cout<<"Choose the level of difficuty."<<endl;
+	cout<<"Enter 1 for Easy."<<endl;
+	cout<<"Enter 2 for Medium."<<endl;
+	cout<<"Enter 3 for Hard."<<endl;
+	cin>>Dif;
+	while((Dif<=0)||(Dif>3))
+	{cout<<"Error in input, Enter value again.";cin>>Dif;}
+	switch(Dif)
+	{
+	case 1: moves=300;break;
+	case 2: moves=200;break;
+	case 3: moves=100;break;
+	default: cout<<"Error in input."<<endl;
+	}
+
+	cout<<"Each column from column 1 to column 9 is mentioned as C1."<<endl;
+	cout<<"Similarly, Each row from row 1 to row 9 is mentioned as R1 to R9."<<endl;
+	cout<<"To choose an index, select it's respective column and row and then assign a value to it."<<endl<<endl;
+	
+	cout<<"     ";
+	for(int k=0; k<=8; k++)
+		{cout<<setw(4)<<"C"<<k+1;}
+	cout<<endl;
+	for(int i=0; i<=8; i++)
+	{
+		x=0;
+		y=0;
+		cout<<setw(3)<<"R"<<i+1;
+		for(int j=0; j<=8; j++)
+		{
+			if(j==0)
+			{cout<<setw(4)<<"|"<<game1[i][j];}
+			else
+			{cout<<setw(5)<<game1[i][j];}
+			if(j==2||j==5||j==8)
+				cout<<"|";
+		}
+		cout<<endl;
+		if(i==2||i==5||i==8)
+		cout<<"       ______________________________________________"<<endl;
+	}
+
+	cout<<"You have "<<moves<<" moves left."<<endl;
+	int t;
+	t=0;
+
+
+	for(t=moves; t>=1; t--)
+	{
+
+
+
+	int r,c;
+	cout<<"Enter the row and column of desired entry.";
+	cin>>r>>c;
+	while((r<1||r>9||c<1||c>9)||((r==1)&&(c==2))||((r==1)&&(c==4))||((r==1)&&(c==5))||((r==1)&&(c==6))||((r==1)&&(c==8))||((r==2)&&(c==1))||((r==2)&&(c==3))||((r==2)&&(c==4))||((r==2)&&(c==7))||((r==2)&&(c==9))||((r==3)&&(c==2))||((r==3)&&(c==8))||((r==4)&&(c==1))||((r==4)&&(c==4))||((r==4)&&(c==8))||((r==5)&&(c==1))||((r==5)&&(c==2))||((r==5)&&(c=3))||((r==5)&&(c==5))||((r==5)&&(c==5))||((r==6)&&(c==5))||((r==6)&&(c==7))||((r==6)&&(c==9))||((r==7)&&(c==1))||((r==7)&&(c==3))||((r==7)&&(c==4))||((r==7)&&(c==6))||((r==8)&&(c==3))||((r==8)&&(c==7))||((r==8)&&(c=8))||((r==9)&&(c==1))||((r==9)&&(c==4))||((r==9)&&(c==6))||((r==9)&&(c==7))||((r==9)&&(c==9)))
+	{
+		cout<<"Invalid row or column, enter values again."<<endl;
+		cin>>r>>c;
+	}
+	cout<<"Enter the integer in given entry.";
+	cin>>game1[r-1][c-1];
+	while((game1[r-1][c-1]<=0)||(game1[r-1][c-1]>9))
+	{
+		cout<<"Enter a value from 1 to 9 "<<endl;
+		cin>>game1[r-1][c-1];
+	}
+	cout<<endl;
+	cout<<"     ";
+	for(int k=0; k<=8; k++)
+		{cout<<setw(4)<<"C"<<k+1;}
+	cout<<endl;
+	for(int i=0; i<=8; i++)
+	{
+		cout<<setw(3)<<"R"<<i+1;
+		for(int j=0; j<=8; j++)
+		{
+			if(j==0)
+			{cout<<setw(4)<<"|"<<game1[i][j];}
+			else
+			{cout<<setw(5)<<game1[i][j];}
+			if(j==2||j==5||j==8)
+				cout<<"|";
+		}
+		cout<<endl;
+		if(i==2||i==5||i==8)
+		cout<<"       ______________________________________________"<<endl;
+
+	}
+
+	for(x=0; x<=8; x++)
+	{
+	for(y=0; y<=8; y++)
+	{
+		if(game1[x][y]==sol1[x][y])
+		{
+			continue;
+		}
+		else
+			break;
+
+	}
+	if(y==9)
+		continue;
+	else
+		break;
+	}
+	if(y==9&&x==9)
+	{ cout<<endl<<endl<<endl<<setw(32)<<"You win! :) "<<endl<<endl; break; }
+
+	cout<<endl<<endl<<setw(21)<<t-1<<" MOVES LEFT."<<endl;
+	}
+
+	if(t<=0)
+	cout<<setw(20)<<"You ran out of moves! :) "<<endl<<endl<<endl;
+
+	for(x=0; x<=8; x++)
+	{
+	for(y=0; y<=8; y++)
+	{
+		if(game1[x][y]!=sol1[x][y])
+		{
+			cout<<setw(33)<<"You lose! :( "<<endl<<endl<<endl;
+			break;
+		}
+	}
+	if(y<9)
+		break;
+	}
+
+	if(y==9&&x==9)
+	{cout<<endl<<endl<<endl<<setw(32)<<"You win! :) "<<endl<<endl;}
+}
+
+void game3()
+{
+	double game1[9][9]={7,0,0,0,0,8,0,0,1,0,1,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,1,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,0,1,0,0,8,0,0,0,0,4};
+	double sol1[9][9]= {7,5,3,9,4,8,2,6,1,9,1,8,7,2,6,4,3,5,6,4,2,1,5,3,8,7,9,8,3,1,2,6,9,5,4,7,2,6,4,5,1,7,9,8,3,5,9,7,3,8,4,1,2,6,3,8,6,4,9,1,7,5,2,4,2,9,6,7,5,3,1,8,1,7,5,8,3,2,6,9,4};
+
+	int x=0;
+	int y=0;
+	int Dif;
+	int moves = 0;
+	cout<<"Choose the level of difficuty."<<endl;
+	cout<<"Enter 1 for Easy."<<endl;
+	cout<<"Enter 2 for Medium."<<endl;
+	cout<<"Enter 3 for Hard."<<endl;
+	cin>>Dif;
+	while((Dif<=0)||(Dif>3))
+	{cout<<"Error in input, Enter value again.";cin>>Dif;}
+	switch(Dif)
+	{
+	case 1: moves=300;break;
+	case 2: moves=200;break;
+	case 3: moves=100;break;
+	default: cout<<"Error in input."<<endl;
+	}
+
+	cout<<"Each column from column 1 to column 9 is mentioned as C1."<<endl;
+	cout<<"Similarly, Each row from row 1 to row 9 is mentioned as R1 to R9."<<endl;
+	cout<<"To choose an index, select it's respective column and row and then assign a value to it."<<endl<<endl;
+	
+	cout<<"     ";
+	for(int k=0; k<=8; k++)
+		{cout<<setw(4)<<"C"<<k+1;}
+	cout<<endl;
+	for(int i=0; i<=8; i++)
+	{
+		x=0;
+		y=0;
+		cout<<setw(3)<<"R"<<i+1;
+		for(int j=0; j<=8; j++)
+		{
+			if(j==0)
+			{cout<<setw(4)<<"|"<<game1[i][j];}
+			else
+			{cout<<setw(5)<<game1[i][j];}
+			if(j==2||j==5||j==8)
+				cout<<"|";
+		}
+		cout<<endl;
+		if(i==2||i==5||i==8)
+		cout<<"       ______________________________________________"<<endl;
+	}
+
+	cout<<"You have "<<moves<<" moves left."<<endl;
+	int t;
+	t=0;
+
+
+	for(t=moves; t>=1; t--)
+	{
+
+
+
+	int r,c;
+	cout<<"Enter the row and column of desired entry.";
+	cin>>r>>c;
+	while((r<1||r>9||c<1||c>9)||((r==1)&&(c==1))||((r==1)&&(c==6))||((r==1)&&(c==9))||((r==2)&&(c==2))||((r==2)&&(c==8))||((r==4)&&(c==9))||((r==5)&&(c==5))||((r==6)&&(c==1))||((r==8)&&(c==2))||((r==8)&&(c==8))||((r==9)&&(c==1))||((r==9)&&(c==3))||((r==9)&&(c==9)))
+	{
+		cout<<"Invalid row or column, enter values again."<<endl;
+		cin>>r>>c;
+	}
+	cout<<"Enter the integer in given entry.";
+	cin>>game1[r-1][c-1];
+	while((game1[r-1][c-1]<=0)||(game1[r-1][c-1]>9))
+	{
+		cout<<"Enter a value from 1 to 9 "<<endl;
+		cin>>game1[r-1][c-1];
+	}
+	cout<<endl;
+	cout<<"     ";
+	for(int k=0; k<=8; k++)
+		{cout<<setw(4)<<"C"<<k+1;}
+	cout<<endl;
+	for(int i=0; i<=8; i++)
+	{
+		cout<<setw(3)<<"R"<<i+1;
+		for(int j=0; j<=8; j++)
+		{
+			if(j==0)
+			{cout<<setw(4)<<"|"<<game1[i][j];}
+			else
+			{cout<<setw(5)<<game1[i][j];}
+			if(j==2||j==5||j==8)
+				cout<<"|";
+		}
+		cout<<endl;
+		if(i==2||i==5||i==8)
+		cout<<"       ______________________________________________"<<endl;
+
+	}
+
+	for(x=0; x<=8; x++)
+	{
+	for(y=0; y<=8; y++)
+	{
+		if(game1[x][y]==sol1[x][y])
+		{
+			continue;
+		}
+		else
+			break;
+
+	}
+	if(y==9)
+		continue;
+	else
+		break;
+	}
+	if(y==9&&x==9)
+	{ cout<<endl<<endl<<endl<<setw(32)<<"You win! :) "<<endl<<endl; break; }
+
+	cout<<endl<<endl<<setw(21)<<t-1<<" MOVES LEFT."<<endl;
+	}
+
+	if(t<=0)
+	cout<<setw(20)<<"You ran out of moves! :) "<<endl<<endl<<endl;
+
+	for(x=0; x<=8; x++)
+	{
+	for(y=0; y<=8; y++)
+	{
+		if(game1[x][y]!=sol1[x][y])
+		{
+			cout<<setw(33)<<"You lose! :( "<<endl<<endl<<endl;
+			break;
+		}
+	}
+	if(y<9)
+		break;
+	}
+
+	if(y==9&&x==9)
+	{cout<<endl<<endl<<endl<<setw(32)<<"You win! :) "<<endl<<endl;}
+}
+
+
+int main()
+{
+	int k;
+	k=rand()%3;
+
+	switch(k)
+	{
+	case 0: {game1(); break;}
+	case 1: {game2();break;}
+	case 2: {game3();break;}
+	default: {break;}
+	}
+
+	char y;
+	cout<<"Would you like to play again?"<<endl;
+	cout<<"Enter <Y> for YES and <N> for NO";
+	cin>>y;
+	do
+	{
+		k=rand()%3;
+
+	switch(k)
+	{
+	case 0: {game1(); break;}
+	case 1: {game2();break;}
+	case 2: {game3();break;}
+	default: {break;}
+	}
+
+	cout<<"Would you like to play again?"<<endl;
+	cout<<"Enter <Y> for YES and <N> for NO";
+	cin>>y;
+
+	}while((y=='Y')||(y=='y'));
+	system("pause");
+}
